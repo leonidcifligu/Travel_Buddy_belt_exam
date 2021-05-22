@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-primary">Hello {{user.name}}</h1>
+
+<h4>Your Trip Schedule</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Destination</th>
+            <th scope="col">Travel Start Date</th>
+            <th scope="col">Travel End Date</th>
+            <th scope="col">Plan</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for travel in user.added_travels.all %}
+        <tr>
+            <th><a href="/travels/destination/{{travel.id}}">{{travel.destination}}</a></th>
+            <td>{{travel.start_date}}</td>
+            <td>{{travel.end_date}}</td>
+            <td>{{travel.desc}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<h4>Other User's Travel Plan</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Destination</th>
+            <th scope="col">Travel Start Date</th>
+            <th scope="col">Travel End Date</th>
+            <th scope="col">Do you want to join ?</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for travel in travels %}
+        <tr>
+            <td>{{travel.user.name}}</td>
+            <td><a href="">{{travel.destination}}</a></td>
+            <td>{{travel.start_date}}</td>
+            <td>{{travel.end_date}}</td>
+            <td><a href="/travels/{{travel.id}}/join">Join</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<button type="submit" class="btn btn-success mt-3 bg-gradient">
+<a href ="/travels/add" style="color: bisque;">Add Travel Plan</a>
+</button>
+{% endblock %}

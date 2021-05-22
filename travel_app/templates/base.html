@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="bg-image"style="background-image: url('http://www.bestbackgroundwallpaper.com/wp-content/uploads/2020/09/low-poly-river-landscape-design-ultra-hd-wallpaper-for-4k-uhd-widescreen-desktop-tablet-smartphone-5f6c9af4b2c8e.jpg');height: 100vh;">
+        <div class="container my-6">
+            <div class="row">
+                <div class="col-lg-12">
+                    {% if 'user_id' in request.session %}
+                        <nav class="navbar navbar-expand-lg navbar-light mt-2">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+                                <ul class="navbar-nav">
+                                    {% if request.get_full_path != "/travels" %}
+                                     <li class="nav-item active ">
+                                        <a class="nav-link text-success" href="/travels">Home <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    {% endif %}
+                                    <li class="nav-item active">
+                                        <a class="nav-link text-danger" href="/logout">Logout <span class="sr-only">(current)</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                        {% endif %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags }} text-danger"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+
+
+                        {% block content %}
+                        
+                        {% endblock %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+</div>
+</body>
+</html>

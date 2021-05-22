@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text">Add a Trip</h1>
+<form action="/travels/create" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="destination">Destination:</label>
+        <input type="text" class="form-control" name="destination">
+    </div>
+    <div class="form-group mt-3">
+        <label for="description">Description:</label>
+        <input type="text" class="form-control" name="desc">
+    </div>
+    <div class="form-group mt-3">
+        <label for="start_date">Start Date:</label>
+        <input type="date" class="form-control" name="start_date">
+    </div>
+    <div class="form-group mt-3">
+        <label for="end_date">End Date:</label>
+        <input type="date" class="form-control" name="end_date">
+    </div>
+    <button type="submit" class="btn btn-success mt-3" style="color: bisque;">Add</button>
+</form>
+{% endblock %}
